@@ -4,12 +4,9 @@ import (
 	"flag"
 	"log"
 	"net/http"
-	"os"
 	"path/filepath"
 	"sync"
 	"text/template"
-
-	"github.com/yasu43/goblueprints/trace"
 )
 
 // templは1つのテンプレートを表します。
@@ -32,7 +29,7 @@ func main() {
 	flag.Parse() // フラグを解釈します。
 
 	r := newRoom()
-	r.tracer = trace.New(os.Stdout)
+	//r.tracer = trace.New(os.Stdout)
 
 	// ルート
 	http.Handle("/", &templateHandler{filename: "chat.html"})
