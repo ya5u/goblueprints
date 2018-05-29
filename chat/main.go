@@ -7,6 +7,9 @@ import (
 	"path/filepath"
 	"sync"
 	"text/template"
+
+	"github.com/stretchr/gomniauth"
+	"github.com/stretchr/gomniauth/providers/google"
 )
 
 // templは1つのテンプレートを表します。
@@ -27,6 +30,12 @@ func (t *templateHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 func main() {
 	var addr = flag.String("addr", ":8080", "アプリケーションのアドレス")
 	flag.Parse() // フラグを解釈します。
+
+	// Gomniauthのセットアップ
+	gomniauth.SetSecurityKey("hogefuga")
+	gomniauth.WithProviders(
+		google.New("381081720000-3umq5rdcqo465uimgp70i39kjadce1ki.apps.googleusercontent.com", "PeFsI3PAwrlKKRLldNsjVJXE", "http://localhost:8080/auth/callback/google"),
+	)
 
 	r := newRoom()
 	//r.tracer = trace.New(os.Stdout)
