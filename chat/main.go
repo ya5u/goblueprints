@@ -47,7 +47,7 @@ func main() {
 		google.New("381081720000-3umq5rdcqo465uimgp70i39kjadce1ki.apps.googleusercontent.com", "PeFsI3PAwrlKKRLldNsjVJXE", "http://localhost:8080/auth/callback/google"),
 	)
 
-	r := newRoom()
+	r := newRoom(UseAuthAvatar)
 	//r.tracer = trace.New(os.Stdout)
 
 	// ルート
