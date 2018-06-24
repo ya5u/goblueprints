@@ -47,7 +47,7 @@ func main() {
 		google.New("381081720000-3umq5rdcqo465uimgp70i39kjadce1ki.apps.googleusercontent.com", "PeFsI3PAwrlKKRLldNsjVJXE", "http://localhost:8080/auth/callback/google"),
 	)
 
-	r := newRoom(UseGravatar)
+	r := newRoom(UseFileSystemAvatar)
 	//r.tracer = trace.New(os.Stdout)
 
 	// ルート
@@ -67,6 +67,7 @@ func main() {
 	http.HandleFunc("/uploader", uploaderHandler)
 	http.Handle("/room", r)
 	http.Handle("/upload", &templateHandler{filename: "upload.html"})
+	http.Handle("/avatars/", http.StripPrefix("/avatars/", http.FileServer(http.Dir("./avatars"))))
 
 	// チャットルームを開始します。
 	go r.run()
