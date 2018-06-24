@@ -1,13 +1,9 @@
 package main
 
 import (
-	"crypto/md5"
 	"errors"
-	"fmt"
-	"io"
 	"io/ioutil"
 	"path/filepath"
-	"strings"
 )
 
 // ErrNoAvatarURLはAvatarインスタンスがアバターのURLを返すことができない場合に発生するエラーです。
@@ -50,7 +46,7 @@ func (_ FileSystemAvatar) GetAvatarURL(u ChatUser) (string, error) {
 			if file.IsDir() {
 				continue
 			}
-			if match, _ := filepath.Match(u.UniqueID+"*", file.Name()); match {
+			if match, _ := filepath.Match(u.UniqueID()+"*", file.Name()); match {
 				return "/avatars/" + file.Name(), nil
 			}
 		}

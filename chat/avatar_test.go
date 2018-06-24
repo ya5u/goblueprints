@@ -1,7 +1,12 @@
 package main
 
-import "testing"
-import gomniauthtest "github.com/gomniauth/test"
+import (
+	"io/ioutil"
+	"os"
+	"path/filepath"
+	"testing"
+)
+import gomniauthtest "github.com/stretchr/gomniauth/test"
 
 func TestAuthAvatar(t *testing.T) {
 	var authAvatar AuthAvatar

@@ -13,6 +13,9 @@ import (
 	"github.com/stretchr/objx"
 )
 
+// 現在のアクティブなAvatarの実装
+var avatars Avatar = UseFileSystemAvatar
+
 // templは1つのテンプレートを表します。
 type templateHandler struct {
 	once     sync.Once
@@ -47,7 +50,7 @@ func main() {
 		google.New("381081720000-3umq5rdcqo465uimgp70i39kjadce1ki.apps.googleusercontent.com", "PeFsI3PAwrlKKRLldNsjVJXE", "http://localhost:8080/auth/callback/google"),
 	)
 
-	r := newRoom(UseFileSystemAvatar)
+	r := newRoom()
 	//r.tracer = trace.New(os.Stdout)
 
 	// ルート
